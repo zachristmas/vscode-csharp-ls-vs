@@ -171,20 +171,20 @@ async function resolveCsharpLsBinaryPath(extensionPath: string,) {
         return devCsharpLsBinaryPath;
     }
 
-    const csharpLsRootPath = path.resolve(extensionPath, `.csharp-ls.${csharpLsVersion}`);
+    const csharpLsRootPath = path.resolve(extensionPath, `.csharp-ls-vs.${csharpLsVersion}`);
 
     if (!existsSync(csharpLsRootPath)) {
         await mkdir(csharpLsRootPath, { recursive: true });
     }
 
-    const csharpLsBinaryPath = path.resolve(csharpLsRootPath, 'csharp-ls');
+    const csharpLsBinaryPath = path.resolve(csharpLsRootPath, 'csharp-ls-vs');
 
     if (!existsSync(csharpLsBinaryPath)) {
 
         const installArgs = [
             'tool',
             'install',
-            'csharp-ls',
+            'csharp-ls-vs',
             '--tool-path', csharpLsRootPath,
             '--version', csharpLsVersion,
         ];
@@ -193,8 +193,8 @@ async function resolveCsharpLsBinaryPath(extensionPath: string,) {
             await shellExec('dotnet', installArgs, csharpLsRootPath);
         }
         catch (e) {
-            window.showErrorMessage(`Failed to install csharp-ls: ${e}`);
-            throw new Error('Failed to install csharp-ls');
+            window.showErrorMessage(`Failed to install csharp-ls-vs: ${e}`);
+            throw new Error('Failed to install csharp-ls-vs');
         }
     }
 

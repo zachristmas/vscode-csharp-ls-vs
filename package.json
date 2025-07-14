@@ -8,7 +8,7 @@
 		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
 	},
 	"license": "MIT",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"pricing": "Free",
 	"engines": {
 		"vscode": "^1.80.0"
@@ -78,6 +78,18 @@
 					"type": "string",
 					"default": "csharp-ls-vs",
 					"description": "Executable path to local csharp-ls. To be used for testing not released csharp-ls version (example: `dotnet /home/user/.../Debug/net7.0/CSharpLanguageServer.dll`). It also can be used for globally installed language server via `dotnet tool install --global csharp-ls-vs` (example: `csharp-ls-vs`)."
+				},
+				"csharp-ls.msbuild.path": {
+					"scope": "window",
+					"type": "string",
+					"default": "",
+					"description": "Path to MSBuild directory (example: 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin'). If not specified, the language server will attempt to auto-detect MSBuild from Visual Studio installations."
+				},
+				"csharp-ls.msbuild.executable": {
+					"scope": "window",
+					"type": "string",
+					"default": "",
+					"description": "Full path to MSBuild executable (example: 'C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\MSBuild.exe'). If specified, this takes precedence over msbuild.path."
 				}
 			}
 		}
