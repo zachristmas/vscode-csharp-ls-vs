@@ -1,7 +1,7 @@
 {
-	"name": "csharp-ls",
-	"displayName": "csharp-ls (VS 2022 Fork)",
-	"description": "C# LSP client with Visual Studio 2022 MSBuild support. Fork of csharp-language-server projects with enhancements by Zach Christmas.",
+	"name": "csharp-ls-vs",
+	"displayName": "csharp-ls (Visual Studio Fork)",
+	"description": "C# LSP client with Visual Studio MSBuild support. Fork of csharp-language-server projects with enhancements by Zach Christmas.",
 	"publisher": "zachchristmas",
 	"repository": {
 		"type": "git",
@@ -22,7 +22,7 @@
 		"lsp",
 		"language server",
 		"msbuild",
-		"visual studio 2022",
+		"visual studio",
 		"roslyn",
 		"fork"
 	],
@@ -76,8 +76,8 @@
 				"csharp-ls.csharp-ls-executable": {
 					"scope": "window",
 					"type": "string",
-					"default": "",
-					"description": "Executable path to local csharp-ls. To be used for testing not released csharp-ls version (example: `dotnet /home/user/.../Debug/net7.0/CSharpLanguageServer.dll`). It also can be used for globally installed language server via `dotnet tool install --global csharp-ls` (example: `csharp-ls`)."
+					"default": "csharp-ls-vs",
+					"description": "Executable path to local csharp-ls. To be used for testing not released csharp-ls version (example: `dotnet /home/user/.../Debug/net7.0/CSharpLanguageServer.dll`). It also can be used for globally installed language server via `dotnet tool install --global csharp-ls-vs` (example: `csharp-ls-vs`)."
 				}
 			}
 		}
@@ -125,7 +125,7 @@
 				"Saulius Menkevičius (razzmatazz) - Original csharp-language-server",
 				"Vytautas Survila (vytautassurvila) - Original VS Code extension"
 			],
-			"forkEnhancements": "Zach Christmas - VS 2022 MSBuild support and lazy loading",
+			"forkEnhancements": "Zach Christmas - Visual Studio MSBuild support and lazy loading",
 			"originalProjects": [
 				"https://github.com/razzmatazz/csharp-language-server",
 				"https://github.com/vytautassurvila/vscode-csharp-ls"
