@@ -1,26 +1,134 @@
-# csharp-ls
+# C# Language Server - VS 2022 Enhanced Fork
 
-Visual Studio Code C# LSP client for [csharp-language-server](https://github.com/razzmatazz/csharp-language-server).
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Visual Studio 2022](https://img.shields.io/badge/VS-2022-blue.svg)](https://visualstudio.microsoft.com/)
+[![VS Code](https://img.shields.io/badge/VS%20Code-1.80+-007ACC.svg)](https://code.visualstudio.com/)
 
-## Why?
+**Enhanced by Zach Christmas** | **Original VS Code extension by Vytautas Survila**
 
-Visual Studio Code already has a great extension for [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp). It works very well in most cases and probably you should try it first. But on big monorepos it takes way too long to initialize or to respond to any commands. In that case csharp-ls comes to the rescue.
+VS Code extension for the enhanced [csharp-language-server](https://github.com/zachristmas/csharp-language-server) with Visual Studio 2022 MSBuild support and lazy solution loading.
 
-## Features
+## 🚀 What's New in This Fork
 
-See [csharp-language-server Features](https://github.com/razzmatazz/csharp-language-server#features)
+### Visual Studio 2022 MSBuild Support
+- ✅ **Automatic detection** of VS 2022 Community/Professional installations
+- ✅ **Custom MSBuild path configuration** in VS Code settings
+- ✅ **Environment variable integration** for seamless setup
+- ✅ **Enhanced error handling** for MSBuild issues
 
-## Requirements
+### Lazy Solution Loading
+- ⚡ **On-demand loading** - solutions load only when you open C# files
+- 🚀 **Faster startup** - no more waiting for all solutions to load at once
+- 🎯 **Multi-solution support** - perfect for large monorepos
+- 🔄 **Smart solution selection** with command palette integration
 
-This extension requires that the .NET 9 (or greater) SDK be installed and on path for Visual Studio Code.
+## 📦 Installation
 
-## Usage
+### Prerequisites
+1. **Install the language server** first:
+   ```bash
+   dotnet tool install --global csharp-ls
+   ```
 
-If opened folder contains single Solution (.sln) file the language server will be launched automatically. In case you have more than one solution files then on first launch you should see prompt asking which solution file to use. Later solution can be changed with command `csharp-ls: Select solution or project`.
+2. **Install this extension** from the VS Code marketplace
 
-## Extension Settings
+### Requirements
+- **.NET 9.0 SDK** or later
+- **Visual Studio 2022** Community/Professional (recommended)
+- **VS Code 1.80** or later
 
-This extension contributes the following settings:
+## ⚙️ Configuration
 
-* `csharp-ls.trace.server`: traces the communication between VS Code and the language server.
-* `csharp-ls.csharp-ls-executable`: Executable path to local csharp-ls. To be used for testing not released csharp-ls version (value: `dotnet /home/user/.../Debug/net7.0/CSharpLanguageServer.dll`). It also can be used for globally installed server via `dotnet tool install --global csharp-ls` (value: `csharp-ls`).
+### Basic Setup (Recommended)
+```json
+{
+  "csharp-ls.csharp-ls-executable": "csharp-ls",
+  "csharp-ls.msbuild.path": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin"
+}
+```
+
+### Advanced Configuration
+| Setting | Description | Default |
+|---------|-------------|---------|
+| `csharp-ls.csharp-ls-executable` | Path to language server executable | `""` |
+| `csharp-ls.msbuild.path` | MSBuild directory path | `""` |
+| `csharp-ls.msbuild.executable` | MSBuild executable path | `""` |
+| `csharp-ls.trace.server` | LSP communication tracing | `{"verbosity": "off"}` |
+
+## 🎯 Usage
+
+### Automatic Solution Loading
+1. **Open VS Code** in your C# workspace
+2. **Open any .cs file** → Solution loads automatically via lazy loading
+3. **IntelliSense activates** with full project context
+
+### Manual Solution Selection
+- **Command Palette** (`Ctrl+Shift+P`)
+- Type: `csharp-ls: Select solution or project`
+- Choose from available solutions
+
+### Multiple Solutions
+- Each solution loads **only when needed**
+- Switch between projects seamlessly
+- No performance impact from unused solutions
+
+## ✨ Features
+
+- 🔍 **Go to Definition** (including decompiled metadata)
+- 💡 **IntelliSense** & code completion
+- 🏷️ **Symbol search** across projects
+- 🔧 **Code actions** & refactoring
+- 📝 **Hover documentation**
+- ⚠️ **Diagnostics** & error reporting
+- 🎨 **Syntax highlighting** via Roslyn
+- 📁 **Multi-solution workspaces**
+
+## 🛠️ Troubleshooting
+
+### Language Server Not Starting
+1. Verify installation: `dotnet tool list --global`
+2. Check version: `csharp-ls --version`
+3. Review VS Code Output → "C# Language Server"
+
+### MSBuild Issues
+1. Ensure VS 2022 is installed
+2. Verify MSBuild path exists
+3. Configure custom path in settings if needed
+4. Check Output panel for specific errors
+
+### Solution Loading Problems
+1. Ensure .sln files exist in workspace
+2. Use "Select solution" command manually
+3. Check file permissions and paths
+
+## 📄 Attribution & License
+
+### 🙏 Original Work
+This extension is a fork of outstanding work by:
+- **[Vytautas Survila](https://github.com/vytautassurvila)** - Original [vscode-csharp-ls](https://github.com/vytautassurvila/vscode-csharp-ls)
+- **[Saulius Menkevičius](https://github.com/razzmatazz)** - Original [csharp-language-server](https://github.com/razzmatazz/csharp-language-server)
+
+### 🔧 Fork Enhancements
+- **[Zach Christmas](https://github.com/zachristmas)** - VS 2022 MSBuild support and lazy loading integration
+
+### 📋 License
+MIT License (same as original projects)
+
+### ⚠️ Support Notice
+**This is a fork with limited support.** 
+
+- **For general language server issues**: Check the [original csharp-language-server](https://github.com/razzmatazz/csharp-language-server)
+- **For general extension issues**: Check the [original VS Code extension](https://github.com/vytautassurvila/vscode-csharp-ls)
+- **For fork-specific issues**: Use this [fork's issue tracker](https://github.com/zachristmas/vscode-csharp-ls-vs/issues)
+
+## 🔗 Related Projects
+
+- **Language Server Fork**: [zachristmas/csharp-language-server](https://github.com/zachristmas/csharp-language-server)
+- **Original Language Server**: [razzmatazz/csharp-language-server](https://github.com/razzmatazz/csharp-language-server)
+- **Original VS Code Extension**: [vytautassurvila/vscode-csharp-ls](https://github.com/vytautassurvila/vscode-csharp-ls)
+
+---
+
+**Thank you to the original authors for their excellent foundation!** 🎉
+
+**Enjoy enhanced C# development with VS 2022 MSBuild support!** 🚀

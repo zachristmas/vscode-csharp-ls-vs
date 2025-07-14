@@ -22,11 +22,26 @@ export async function startCSharpLsServer(
     const rootPath = slnWorkspaceFolder?.uri.fsPath ?? workspace.rootPath ?? '';
     const relativeSolutionPath = solutionPath.replace(rootPath, '').replace(/^[\/\\]/, '');
 
+    // Build command line arguments
+    const args = [`--solution`, relativeSolutionPath];
+
+    // Add MSBuild configuration if provided
+    const msbuildPath = workspace.getConfiguration('csharp-ls').get('msbuild.path') as string;
+    const msbuildExecutable = workspace.getConfiguration('csharp-ls').get('msbuild.executable') as string;
+
+    if (msbuildExecutable && msbuildExecutable.trim() !== '') {
+        args.push('--msbuildexepath');
+        args.push(msbuildExecutable.trim());
+    } else if (msbuildPath && msbuildPath.trim() !== '') {
+        args.push('--msbuildpath');
+        args.push(msbuildPath.trim());
+    }
+
     const csharpLsExecutable = {
-        command: `${csharpLsBinaryPath} --solution ${relativeSolutionPath}`,
+        command: csharpLsBinaryPath,
+        args: args,
         options: {
             cwd: rootPath,
-            shell: true,
         },
     };
 

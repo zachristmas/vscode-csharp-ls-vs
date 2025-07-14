@@ -1,14 +1,14 @@
 {
 	"name": "csharp-ls",
-	"displayName": "csharp-ls",
-	"description": "C# LSP client for csharp-language-server",
-	"publisher": "vytautassurvila",
+	"displayName": "csharp-ls (VS 2022 Fork)",
+	"description": "C# LSP client with Visual Studio 2022 MSBuild support. Fork of csharp-language-server projects with enhancements by Zach Christmas.",
+	"publisher": "zachchristmas",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/vytautassurvila/vscode-csharp-ls"
+		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
 	},
 	"license": "MIT",
-	"version": "0.0.26",
+	"version": "0.1.0",
 	"pricing": "Free",
 	"engines": {
 		"vscode": "^1.80.0"
@@ -16,6 +16,20 @@
 	"categories": [
 		"Programming Languages"
 	],
+	"keywords": [
+		"csharp",
+		"c#",
+		"lsp",
+		"language server",
+		"msbuild",
+		"visual studio 2022",
+		"roslyn",
+		"fork"
+	],
+	"galleryBanner": {
+		"color": "#1e1e1e",
+		"theme": "dark"
+	},
 	"activationEvents": [
 		"onCommand: csharp-ls.selectSolution",
 		"workspaceContains:**/*.{sln}",
@@ -93,5 +107,30 @@
 	},
 	"dependencies": {
 		"vscode-languageclient": "^8.1.0"
+	},
+	"extensionPack": [],
+	"extensionDependencies": [],
+	"qna": false,
+	"sponsorLink": "https://github.com/zachristmas",
+	"badges": [
+		{
+			"url": "https://img.shields.io/badge/Fork-Enhanced-blue",
+			"href": "https://github.com/zachristmas/vscode-csharp-ls-vs",
+			"description": "Enhanced Fork"
+		}
+	],
+	"__metadata": {
+		"attribution": {
+			"originalAuthors": [
+				"Saulius Menkevičius (razzmatazz) - Original csharp-language-server",
+				"Vytautas Survila (vytautassurvila) - Original VS Code extension"
+			],
+			"forkEnhancements": "Zach Christmas - VS 2022 MSBuild support and lazy loading",
+			"originalProjects": [
+				"https://github.com/razzmatazz/csharp-language-server",
+				"https://github.com/vytautassurvila/vscode-csharp-ls"
+			],
+			"supportDisclaimer": "This is a fork with limited support. For general issues, please check the original projects first."
+		}
 	}
 }
