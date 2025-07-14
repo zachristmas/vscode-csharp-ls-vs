@@ -2,7 +2,7 @@
 	"name": "csharp-ls-vs",
 	"displayName": "csharp-ls (Visual Studio Fork)",
 	"description": "C# LSP client with Visual Studio MSBuild support. Fork of csharp-language-server projects with enhancements by Zach Christmas.",
-	"publisher": "zachchristmas",
+	"publisher": "ZacharyChristmas",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
