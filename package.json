@@ -8,7 +8,7 @@
 		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
 	},
 	"license": "MIT",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"pricing": "Free",
 	"engines": {
 		"vscode": "^1.80.0"
@@ -33,6 +33,8 @@
 	"activationEvents": [
 		"onCommand: csharp-ls.selectSolution",
 		"workspaceContains:**/*.{sln}",
+		"workspaceContains:**/*.{slnx}",
+		"workspaceContains:**/*.{csproj}",
 		"onLanguage:csharp"
 	],
 	"main": "./out/extension.js",
@@ -45,6 +47,10 @@
 			{
 				"command": "csharp-ls.showReferences",
 				"title": "Show References"
+			},
+			{
+				"command": "csharp-ls.restartServer",
+				"title": "csharp-ls: Restart Language Server"
 			}
 		],
 		"configuration": {
