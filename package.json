@@ -8,7 +8,7 @@
 		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
 	},
 	"license": "MIT",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"pricing": "Free",
 	"engines": {
 		"vscode": "^1.80.0"
