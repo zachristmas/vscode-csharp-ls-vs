@@ -80,10 +80,36 @@ export async function stopCSharpLsServer(): Promise<void> {
 
 export async function getTargetSolutionPaths(): Promise<string[]> {
     const solutionFiles = await workspace.findFiles(
-        '{**/*.sln}',
+        '{**/*.sln,**/*.slnx}',
         '{**/node_modules/**,**/.git/**}');
 
-    return solutionFiles.map(f => f.path);
+    // Normalize paths and remove duplicates
+    const normalizedPaths = solutionFiles.map(f => {
+        let filePath = f.path;
+        // Convert VS Code URI path format to standard path
+        if (filePath.startsWith('/') && filePath.includes(':')) {
+            // Convert /c:/path to c:/path on Windows
+            filePath = filePath.substring(1);
+        }
+        return path.resolve(filePath).toLowerCase().replace(/\//g, '\\');
+    });
+
+    // Remove duplicates by using Set
+    const uniquePaths = [...new Set(normalizedPaths)];
+    
+    // Map back to original paths for the unique ones
+    const uniqueOriginalPaths = uniquePaths.map(normalizedPath => {
+        const originalFile = solutionFiles.find(f => {
+            let filePath = f.path;
+            if (filePath.startsWith('/') && filePath.includes(':')) {
+                filePath = filePath.substring(1);
+            }
+            return path.resolve(filePath).toLowerCase().replace(/\//g, '\\') === normalizedPath;
+        });
+        return originalFile?.path || normalizedPath;
+    });
+
+    return uniqueOriginalPaths;
 }
 
 export async function autostartCSharpLsServer(context: ExtensionContext): Promise<void> {
