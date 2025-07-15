@@ -8,7 +8,7 @@
 		"url": "https://github.com/zachristmas/vscode-csharp-ls-vs"
 	},
 	"license": "MIT",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"pricing": "Free",
 	"engines": {
 		"vscode": "^1.80.0"
@@ -41,6 +41,10 @@
 			{
 				"command": "csharp-ls.selectSolution",
 				"title": "csharp-ls: Select solution or project"
+			},
+			{
+				"command": "csharp-ls.showReferences",
+				"title": "Show References"
 			}
 		],
 		"configuration": {

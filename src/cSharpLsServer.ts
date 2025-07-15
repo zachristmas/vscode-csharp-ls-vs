@@ -83,33 +83,23 @@ export async function getTargetSolutionPaths(): Promise<string[]> {
         '{**/*.sln,**/*.slnx}',
         '{**/node_modules/**,**/.git/**}');
 
-    // Normalize paths and remove duplicates
-    const normalizedPaths = solutionFiles.map(f => {
-        let filePath = f.path;
-        // Convert VS Code URI path format to standard path
-        if (filePath.startsWith('/') && filePath.includes(':')) {
-            // Convert /c:/path to c:/path on Windows
-            filePath = filePath.substring(1);
-        }
-        return path.resolve(filePath).toLowerCase().replace(/\//g, '\\');
-    });
-
-    // Remove duplicates by using Set
-    const uniquePaths = [...new Set(normalizedPaths)];
+    // Create a map to track unique solutions by their normalized paths
+    const uniqueSolutions = new Map<string, string>();
     
-    // Map back to original paths for the unique ones
-    const uniqueOriginalPaths = uniquePaths.map(normalizedPath => {
-        const originalFile = solutionFiles.find(f => {
-            let filePath = f.path;
-            if (filePath.startsWith('/') && filePath.includes(':')) {
-                filePath = filePath.substring(1);
-            }
-            return path.resolve(filePath).toLowerCase().replace(/\//g, '\\') === normalizedPath;
-        });
-        return originalFile?.path || normalizedPath;
+    solutionFiles.forEach(f => {
+        let filePath = f.fsPath;  // Use fsPath instead of path for correct file system path
+        
+        // Normalize the path for comparison
+        const normalizedPath = path.resolve(filePath).toLowerCase().replace(/\\/g, '/');
+        
+        // Only add if we haven't seen this normalized path before
+        if (!uniqueSolutions.has(normalizedPath)) {
+            uniqueSolutions.set(normalizedPath, filePath);
+        }
     });
-
-    return uniqueOriginalPaths;
+    
+    // Return the original paths (not normalized) to preserve user's path format
+    return Array.from(uniqueSolutions.values());
 }
 
 export async function autostartCSharpLsServer(context: ExtensionContext): Promise<void> {
