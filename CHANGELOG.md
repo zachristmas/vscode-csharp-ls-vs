@@ -1,3 +1,9 @@
+# [0.1.6]
+- Documentation: changelog and README updates. Pins csharp-ls-vs 1.2.5. No functional changes since 0.1.5.
+
+# [0.1.5]
+- Pins [csharp-ls-vs 1.2.4](https://www.nuget.org/packages/csharp-ls-vs): Visual Studio 2026 / MSBuild v18 support. The language server self-aligns its net472 MSBuild build host to the installed Visual Studio at startup (via vswhere), fixing loading of old-style .NET Framework solutions on machines with VS 2026 installed. No-op on VS 2022.
+
 # [0.0.26]
 - [csharp-ls@0.18.0](https://github.com/razzmatazz/csharp-language-server/releases/tag/0.18.0)
 

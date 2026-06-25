@@ -132,3 +132,9 @@ MIT License (same as original projects)
 **Thank you to the original authors for their excellent foundation!** 🎉
 
 **Enjoy enhanced C# development with Visual Studio MSBuild support!** 🚀
+
+## 📝 Changelog
+
+**0.1.5** — Visual Studio 2026 / MSBuild v18 support (via csharp-ls-vs 1.2.4): the language server self-aligns its MSBuild build host to the installed Visual Studio at startup, fixing old-style .NET Framework solution loading on machines with VS 2026. No-op on VS 2022.
+
+See the full [CHANGELOG](https://github.com/zachristmas/vscode-csharp-ls-vs/blob/master/CHANGELOG.md).
