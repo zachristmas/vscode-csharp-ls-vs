@@ -1,9 +1,13 @@
 name: Publish Extension
 
+# Keyless publish via Microsoft Entra ID (federated OIDC) -> vsce --azure-credential.
+# No PAT; survives the Dec 2026 global-PAT retirement.
 on:
-  release:
-    types: [published]
   workflow_dispatch:
+
+permissions:
+  id-token: write   # GitHub OIDC token for Entra federated login
+  contents: read
 
 jobs:
   publish:
@@ -14,7 +18,11 @@ jobs:
         with:
           node-version: '20'
       - run: npm install
+      - name: Azure login (OIDC, no stored secret)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
       - name: Publish to VS Marketplace
-        run: npx @vscode/vsce publish --pat "$VSCE_PAT"
-        env:
-          VSCE_PAT: ${{ secrets.VSCE_PAT }}
+        run: npx @vscode/vsce@latest publish --azure-credential
